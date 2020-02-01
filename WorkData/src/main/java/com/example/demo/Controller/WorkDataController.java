@@ -99,7 +99,6 @@ public class WorkDataController {
 	@GetMapping(value = "search")
 	ModelAndView searchForm(ModelAndView mav) {
 		mav.setViewName("list");
-		System.out.println(mav);
 		return mav;
 	}
 

@@ -8,7 +8,7 @@
 	<div>
 		<p>日付IDを入力して下さい。</p>
 		<form th:action="@{/search}" th:object="${data_id_Form}" method="post" >
-			<input type="text" name="data_id" th:value="*{data_id}">
+			<input type="text" name="data_id" th:field="*{data_id}">
 			<input type="submit" name="search" value="検索">
 			<span th:if="${#fields.hasErrors('data_id')}" th:errors="*{data_id}"
 			class="error-input"></span> 
