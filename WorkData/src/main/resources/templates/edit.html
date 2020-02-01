@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>編集画面</title>
+</head>
+<body>
+
+<!--　編集フォーム  -->
+	<form th:action="@{/edit}" th:method="post" th:object="${workData}">
+		<p>日付ID</p>
+		<input type="text" name="data_id" th:field="*{data_id}">	 
+		  <span th:if="${#fields.hasErrors('data_id')}" th:errors="*{data_id}"
+		  class="error-input"></span>
+
+		<p>日付名</p>
+		<input type="text" name="data_name" th:field="*{data_name}">
+		  <span th:if="${#fields.hasErrors('data_name')}" th:errors="*{data_name}"
+		  class="error-input"></span>
+
+		<p>加減値（年）</p>
+		<input type="text" name="calc_year" th:field="*{calc_year}">
+		  <span th:if="${#fields.hasErrors('calc_year')}" th:errors="*{calc_year}"
+		  class="error-input"></span>
+
+		<p>加減値（月）</p>
+		<input type="text" name="calc_month" th:field="*{calc_month}">
+		  <span th:if="${#fields.hasErrors('calc_month')}" th:errors="*{calc_month}"
+		  class="error-input"></span>
+
+		<p>加減値（日）</p>
+		<input type="text" name="calc_day" th:field="*{calc_day}"> <br>
+		  <span th:if="${#fields.hasErrors('calc_day')}" th:errors="*{calc_day}"
+		  class="error-input"></span>
+
+		<br> 
+		<input type="submit" value="更新"> 
+		<input type="hidden" name="id" th:value="*{id}">
+		
+  </form>
+  <form  th:action="@{/GoToTop}" method="post">
+  <input type="submit" name="GoToTop" value="戻る" >
+  </form>
+  
+
+</body>
+</html>

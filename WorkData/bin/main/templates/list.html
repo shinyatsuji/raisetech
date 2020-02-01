@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>入力画面</title>
+</head>
+<body>
+	<div>
+		<p>日付IDを入力して下さい。</p>
+		<form th:action="@{/search}" th:object="${data_id_Form}" method="post" >
+			<input type="text" name="data_id" th:value="*{data_id}">
+			<input type="submit" name="search" value="検索">
+			<span th:if="${#fields.hasErrors('data_id')}" th:errors="*{data_id}"
+			class="error-input"></span> 
+		</form>
+		
+		<form  th:action="@{/GoToTop}" method="post">
+            <input type="submit" name="GoToTop" value="戻る" >
+        </form>
+	</div>
+	<table>
+		<tr>
+			<th>id</th>
+			<th>日付ID</th>
+			<th>日付名</th>
+			<th>計算結果</th>
+			<th>計算式</th>
+		</tr>
+		<tr th:each="list: ${lists}" th:object="${list}">
+			<td th:text="*{id}">NM01</td>
+			<td th:text="*{data_id}">NM01</td>
+			<td th:text="*{data_name}">20200101</td>
+			<td th:text="*{calc_result}">20200401</td>
+			<td th:text="*{calc_year}+'/'+*{calc_month}+'/'+*{calc_day}"></td>
+
+			<td><form th:action="@{/edit}" method="post" >
+					<input type="submit" name="edit_form" value="更新"> 
+					<input type="hidden" name="id" th:value="*{id}">
+				</form></td>
+			<td>
+				<form th:action="@{/delete}" method="post">
+					<input type="submit" value="削除">
+					<input type="hidden" name="id" th:value="*{id}">
+				</form>
+			</td>
+		</tr>
+	</table>
+
+</body>
+</html>
