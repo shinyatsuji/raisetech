@@ -36,23 +36,24 @@ public class WorkDataController {
 		return new Data_id_Form();
 	}
 
-//	一覧表示
+//一覧表示
 	@GetMapping
 	ModelAndView getWorkData(ModelAndView mav) {
 		List<WorkData> list = workDataService.findAll();
+		System.out.println(list);
 		mav.addObject("lists", list);
 		mav.setViewName("index");
 		return mav;
 	}
 
-//	新規作成　画面表示
+//新規作成　画面表示
 	@GetMapping(value = "create")
 	ModelAndView creatFormWorkData(ModelAndView mav) {
 		mav.setViewName("create");
 		return mav;
 	}
 
-//	新規作成　
+//新規作成　
 	@PostMapping(value = "create")
 	ModelAndView createWorkData(ModelAndView mav, @Validated WorkDataForm workDataForm, BindingResult result) {
 		if (result.hasErrors()) {
@@ -87,7 +88,7 @@ public class WorkDataController {
 		return mav;
 	}
 
-//	削除
+//削除
 	@PostMapping(value = "delete")
 	ModelAndView delete(ModelAndView mav, @RequestParam Integer id) {
 		workDataService.delete(id);

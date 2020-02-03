@@ -32,7 +32,7 @@ public class WorkDataService {
 
 	}
 
-//	編集
+//編集
 	public void update(WorkData data) {
 		workDataMapper.update(data);
 	}

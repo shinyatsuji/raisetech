@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+.error-input{
+	color:red;
+
+}
+
+.input-calc{
+	background-color:skyblue;
+}
+
+.border{
+	border:solid 2px;
+}
+
+.table-height{
+	height:40px;
+}
+
+.submit{
+	display:inline-block;
+}

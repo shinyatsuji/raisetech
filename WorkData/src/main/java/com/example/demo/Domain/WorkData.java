@@ -17,8 +17,8 @@ public class WorkData {
 	@Size(min = 1, max = 6, message = "6文字以内で入力して下さい。")
 	private String data_name;
 
-	@Size(min = 1, max = 8, message = "8文字以内で入力して下さい。")
-	private String calc_result;
+//	@Size(min = 1, max = 8, message = "8文字以内で入力して下さい。")
+//	private String calc_result;
 
 	@NotNull(message = "未入力です")
 	private Integer calc_year;
