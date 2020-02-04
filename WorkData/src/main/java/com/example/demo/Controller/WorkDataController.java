@@ -137,6 +137,7 @@ public class WorkDataController {
 		}
 //フォームから情報取得	
 		LocalDate date = form.getDate();
+
 		System.out.println(date);
 		Integer id = form.getId();
 //idから加減する年/月/日を取得
