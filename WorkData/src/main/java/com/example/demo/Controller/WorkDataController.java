@@ -1,5 +1,6 @@
 package com.example.demo.Controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.BeanUtils;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.Domain.WorkData;
+import com.example.demo.Form.CalcData_Form;
 import com.example.demo.Form.Data_id_Form;
 import com.example.demo.Form.WorkDataForm;
 import com.example.demo.Service.WorkDataService;
@@ -36,11 +38,15 @@ public class WorkDataController {
 		return new Data_id_Form();
 	}
 
+	@ModelAttribute
+	CalcData_Form setCalcForm() {
+		return new CalcData_Form();
+	}
+
 //一覧表示
 	@GetMapping
 	ModelAndView getWorkData(ModelAndView mav) {
 		List<WorkData> list = workDataService.findAll();
-		System.out.println(list);
 		mav.addObject("lists", list);
 		mav.setViewName("index");
 		return mav;
@@ -109,8 +115,8 @@ public class WorkDataController {
 		if (result.hasErrors()) {
 			return searchForm(mav);
 		}
-
-		List<WorkData> dataIdSearch = workDataService.searchByData_Id(form);
+		String data_id = form.getData_id();
+		List<WorkData> dataIdSearch = workDataService.searchByData_Id(data_id);
 		mav.addObject("lists", dataIdSearch);
 		mav.setViewName("list");
 		return mav;
@@ -120,6 +126,32 @@ public class WorkDataController {
 	@PostMapping(value = "GoToTop")
 	ModelAndView goToTop(ModelAndView mav) {
 		mav.setViewName("redirect:/");
+		return mav;
+	}
+
+//日付計算
+	@PostMapping(value = "calc")
+	ModelAndView calcData(ModelAndView mav, @Validated CalcData_Form form, BindingResult result) {
+		if (result.hasErrors()) {
+			return getWorkData(mav);
+		}
+//フォームから情報取得	
+		LocalDate date = form.getDate();
+		System.out.println(date);
+		Integer id = form.getId();
+//idから加減する年/月/日を取得
+		WorkData wd = workDataService.searchById(id);
+		Integer year = wd.getCalc_year();
+		Integer month = wd.getCalc_month();
+		Integer day = wd.getCalc_day();
+//入力した年月日に加減
+		date = date.plusYears(year);
+		date = date.plusMonths(month);
+		date = date.plusDays(day);
+		mav.addObject("date", date);
+		mav.addObject("wd", wd);
+		System.out.println(mav);
+		mav.setViewName("index");
 		return mav;
 	}
 }

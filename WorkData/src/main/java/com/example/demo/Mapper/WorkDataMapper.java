@@ -9,7 +9,6 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import com.example.demo.Domain.WorkData;
-import com.example.demo.Form.Data_id_Form;
 import com.example.demo.Form.WorkDataForm;
 
 @Mapper
@@ -19,7 +18,7 @@ public interface WorkDataMapper {
 	List<WorkData> findAll();
 
 //新規作成
-	@Insert("INSERT INTO work_data (data_id,data_name,calc_result,calc_year,calc_month,calc_day)VALUE(#{data_id},#{data_name},#{calc_result},#{calc_year},#{calc_month},#{calc_day})")
+	@Insert("INSERT INTO work_data (data_id,data_name,calc_year,calc_month,calc_day)VALUE(#{data_id},#{data_name},#{calc_year},#{calc_month},#{calc_day})")
 	void create(WorkDataForm workDataForm);
 
 //id検索
@@ -27,7 +26,7 @@ public interface WorkDataMapper {
 	WorkData findOne(Integer id);
 
 //編集
-	@Update("UPDATE work_data set data_id=#{data_id},data_name=#{data_name},calc_result=#{calc_result},calc_year=#{calc_year},calc_month=#{calc_month},calc_day=#{calc_day} where id=#{id}")
+	@Update("UPDATE work_data set data_id=#{data_id},data_name=#{data_name},calc_year=#{calc_year},calc_month=#{calc_month},calc_day=#{calc_day} where id=#{id}")
 	void update(WorkData data);
 
 //削除
@@ -36,6 +35,10 @@ public interface WorkDataMapper {
 
 //日付ID検索
 	@Select("SELECT * FROM work_data where data_id = #{data_id}")
-	List<WorkData> searchDataId(Data_id_Form form);
+	List<WorkData> searchDataId(String data_id);
+
+//IDで検索
+	@Select("SELECT * FROM work_data where id=#{id}")
+	WorkData searchById(Integer id);
 
 }

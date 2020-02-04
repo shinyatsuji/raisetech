@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.Domain.WorkData;
-import com.example.demo.Form.Data_id_Form;
 import com.example.demo.Form.WorkDataForm;
 import com.example.demo.Mapper.WorkDataMapper;
 
@@ -43,7 +42,12 @@ public class WorkDataService {
 	}
 
 //日付ID検索
-	public List<WorkData> searchByData_Id(Data_id_Form form) {
-		return workDataMapper.searchDataId(form);
+	public List<WorkData> searchByData_Id(String data_id) {
+		return workDataMapper.searchDataId(data_id);
+	}
+
+	public WorkData searchById(Integer id) {
+
+		return workDataMapper.searchById(id);
 	}
 }
