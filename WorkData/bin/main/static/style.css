@@ -2,16 +2,46 @@
 
 .error-input{
 	color:red;
-
 }
 
+.calc-form{
+	background-color:rgb(30,144,255);
+	color:white;
+}
 
+.button-style{
+    background-color:rgb(30,144,255);
+    color:white;
+}
 
+th{
+	text-align:left;
+	width:100px;
+	font-size:10px;
+}
 
-.table-height{
-	height:40px;
+td{
+	width:100px;
+	height:20px;
 }
 
 .submit{
+	display:block;
+}
+
+.display-inline{
 	display:inline-block;
+}
+
+.display{
+	background-color:rgb(30,144,255);
+	color:white;
+}
+
+.list-table{
+	height:200px;
+}
+
+.red-button{
+	background-color:#FF6666;
 }

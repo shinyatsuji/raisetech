@@ -8,63 +8,70 @@
 </head>
 <body>
 	<!--計算式の入力-->
-	<div>
+	<div class="calc-form">
 		<form th:action="@{/calc}" th:object="${calcData_Form}" method="post">
 			<dl>
 				<dt>
 					<label for="data_input">日付を入力して下さい。</label>
 				</dt>
 				<dd>
-					<input type="date" name="data_input" th:field="*{date}">
-					<span th:if="${#fields.hasErrors('date')}" th:errors="*{date}"
-			class="error-input"></span> 
+					<input type="date" name="data_input" th:field="*{date}"> <span
+						th:if="${#fields.hasErrors('date')}" th:errors="*{date}"
+						class="error-input"></span>
 				</dd>
 				<dt>
 					<label for="id_input">IDを入力して下さい。</label>
 				</dt>
 				<dd>
-					<input type="text" name="id_input" th:field="*{id}">
-					<span th:if="${#fields.hasErrors('id')}" th:errors="*{id}"
-			class="error-input"></span> 
+					<input type="text" name="id_input" th:field="*{id}"> <span
+						th:if="${#fields.hasErrors('id')}" th:errors="*{id}"
+						class="error-input"></span>
 				</dd>
 			</dl>
-			<input type="submit" name="calc_exec" value="計算実行">
+			<input type="submit" name="calc_exec" value="計算実行"
+				class="button-style"> <input type="submit" name="reset"
+				value="リセット" class="button-style">
 		</form>
-		<form  th:action="@{/GoToTop}" method="post">
-            <input type="submit" name="GoToTop" value="リセット" >
-        </form>
+		<hr>
+		<!-- 計算結果 -->
+		<p>計算結果</p>
 		<table>
 			<tr>
 				<th>id</th>
 				<th>日付ID</th>
 				<th>日付名</th>
 				<th>計算式</th>
-				<th>計算結果</th>
 			</tr>
-			
+
 			<tr th:each="result:${wd}" th:object="${result}">
-			<td th:text="*{id}">NM01</td>
-			<td th:text="*{data_id}">NM01</td>
-			<td th:text="*{data_name}">20200101</td>
-			<td th:text="*{calc_year}+'/'+*{calc_month}+'/'+*{calc_day}"></td>
+				<td th:text="*{id}">NM01</td>
+				<td th:text="*{data_id}">NM01</td>
+				<td th:text="*{data_name}">20200101</td>
+				<td th:text="*{calc_year}+'/'+*{calc_month}+'/'+*{calc_day}"></td>
 			</tr>
 			<tr>
-			<td th:text="${date}">NM01</td>
+				<th>計算結果</th>
+			</tr>
+			<tr th:object="${date}">
+				<td th:text="${date}">
 			</tr>
 		</table>
 		<hr>
-		<p>日付ID（計算式）</p>
-		<form th:action="@{/create}" method="get">
-			<input type="submit" name="data_create" value="新規登録">
-		</form>
+		<div>
+			<p>日付ID（計算式）</p>
 
-		<form th:action="@{/search}" method="get">
-			<input type="submit" name="data_search" value="検索">
-		</form>
+			<form th:action="@{/create}" method="get" class="display-inline">
+				<input type="submit" name="data_create" value="新規登録"
+					class="button-style">
+			</form>
+
+			<form th:action="@{/search}" method="get" class="display-inline">
+				<input type="submit" name="data_search" value="検索"
+					class="button-style">
+			</form>
+		</div>
 	</div>
-
-	<hr>
-
+	
 	<p>一覧</p>
 	<table>
 		<tr>
@@ -73,7 +80,7 @@
 			<th>日付名</th>
 			<th>計算式</th>
 		</tr>
-		<tr th:each="list: ${lists}" th:object="${list}" class="table-height">
+		<tr th:each="list: ${lists}" th:object="${list}">
 			<td th:text="*{id}">NM01</td>
 			<td th:text="*{data_id}">NM01</td>
 			<td th:text="*{data_name}">20200101</td>
@@ -87,7 +94,7 @@
 			</td>
 			<td class="submit">
 				<form th:action="@{/delete}" method="post">
-					<input type="submit" value="削除"> <input type="hidden"
+					<input type="submit" value="削除" class="red-button"> <input type="hidden"
 						name="id" th:value="*{id}">
 				</form>
 			</td>

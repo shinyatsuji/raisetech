@@ -122,9 +122,23 @@ public class WorkDataController {
 		return mav;
 	}
 
+// 初期画面に戻る(新規作成)
+	@PostMapping(value = "create", params = "GoToTop")
+	ModelAndView goToTop_from_create(ModelAndView mav) {
+		mav.setViewName("redirect:/");
+		return mav;
+	}
+
 //初期画面に戻る
-	@PostMapping(value = "GoToTop")
+	@PostMapping(value = "search", params = "GoToTop")
 	ModelAndView goToTop(ModelAndView mav) {
+		mav.setViewName("redirect:/");
+		return mav;
+	}
+
+//計算リセット
+	@PostMapping(value = "calc", params = "reset")
+	ModelAndView reset(ModelAndView mav) {
 		mav.setViewName("redirect:/");
 		return mav;
 	}

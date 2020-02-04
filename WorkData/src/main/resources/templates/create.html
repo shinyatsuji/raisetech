@@ -7,7 +7,7 @@
 href="../static/style.css" th:href="@{style.css}">
 </head>
 <body>
-
+<div class="display">
 	<!-- 新規作成フォーム -->
 	<form th:action="@{/create}" th:method="post"
 		th:object="${workDataForm}">
@@ -35,13 +35,14 @@ href="../static/style.css" th:href="@{style.css}">
 		<input type="text" name="calc_day" th:field="*{calc_day}">
 		 <span th:if="${#fields.hasErrors('calc_day')}" th:errors="*{calc_day}"
 		 class="error-input"></span>
-		<br> <br> <input type="submit" value="登録">
+		<br> <br> <input type="submit" value="登録" class="button-style">
+		 <input type="submit" name="GoToTop" value="戻る" class="button-style">
     </form>
 
 <!--初期画面に戻る-->    
-　　<form  th:action="@{/GoToTop}" method="post">
-        <input type="submit" name="GoToTop" value="戻る" >
-    </form>
-
+　<!-- 　<form  th:action="@{/GoToTop}" method="post">
+        <input type="submit" name="GoToTop" value="戻る" class="button-style">
+    </form> -->
+</div>
 </body>
 </html>
