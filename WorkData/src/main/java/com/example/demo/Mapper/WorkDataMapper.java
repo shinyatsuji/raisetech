@@ -9,7 +9,6 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import com.example.demo.Domain.WorkData;
-import com.example.demo.Form.WorkDataForm;
 
 @Mapper
 public interface WorkDataMapper {
@@ -19,7 +18,7 @@ public interface WorkDataMapper {
 
 //新規作成
 	@Insert("INSERT INTO work_data (data_id,data_name,calc_year,calc_month,calc_day)VALUE(#{data_id},#{data_name},#{calc_year},#{calc_month},#{calc_day})")
-	void create(WorkDataForm workDataForm);
+	void create(WorkData workData);
 
 //id検索
 	@Select("SELECT * FROM work_data where id=#{id}")
@@ -40,5 +39,9 @@ public interface WorkDataMapper {
 //IDで検索
 	@Select("SELECT * FROM work_data where id=#{id}")
 	WorkData searchById(Integer id);
+
+//	全件削除
+	@Delete("DELETE  FROM work_data")
+	void deleteAll();
 
 }

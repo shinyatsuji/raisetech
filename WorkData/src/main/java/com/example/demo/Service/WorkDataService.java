@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.Domain.WorkData;
-import com.example.demo.Form.WorkDataForm;
 import com.example.demo.Mapper.WorkDataMapper;
 
 @Service
@@ -21,8 +20,8 @@ public class WorkDataService {
 	}
 
 //新規作成
-	public void create(WorkDataForm workDataForm) {
-		workDataMapper.create(workDataForm);
+	public void create(WorkData workData) {
+		workDataMapper.create(workData);
 	}
 
 //id検索
@@ -50,4 +49,10 @@ public class WorkDataService {
 
 		return workDataMapper.searchById(id);
 	}
+
+//	全件削除
+	public void deleteAll() {
+		workDataMapper.deleteAll();
+	}
+//
 }

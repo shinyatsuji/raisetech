@@ -9,6 +9,7 @@ href="../static/style.css" th:href="@{style.css}">
 <body>
 
 <!--　編集フォーム  -->
+<div class="display">
 	<form th:action="@{/edit}" th:method="post" th:object="${workData}">
 		<p>日付ID</p>
 		<input type="text" name="data_id" th:field="*{data_id}">	 
@@ -37,13 +38,10 @@ href="../static/style.css" th:href="@{style.css}">
 
 		<br> 
 		<input type="submit" value="更新"> 
-		<input type="hidden" name="id" th:value="*{id}">
-		
-  </form>
-  <form  th:action="@{/GoToTop}" method="post">
-  <input type="submit" name="GoToTop" value="戻る" >
-  </form>
+		<input type="hidden" name="id" th:value="*{id}"> 
+　　　　  <input type="submit" name="GoToTop" value="戻る" >
+  </form>  
   
-
+</div>
 </body>
 </html>

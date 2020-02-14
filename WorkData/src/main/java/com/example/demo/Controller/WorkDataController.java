@@ -65,7 +65,9 @@ public class WorkDataController {
 		if (result.hasErrors()) {
 			return creatFormWorkData(mav);
 		}
-		workDataService.create(workDataForm);
+		WorkData workData = new WorkData();
+		BeanUtils.copyProperties(workDataForm, workData);
+		workDataService.create(workData);
 		mav.setViewName("redirect:/");
 		return mav;
 	}
@@ -90,6 +92,13 @@ public class WorkDataController {
 		BeanUtils.copyProperties(form, data);
 		data.setId(id);
 		workDataService.update(data);
+		mav.setViewName("redirect:/");
+		return mav;
+	}
+
+// 初期画面に戻る(編集)
+	@PostMapping(value = "edit", params = "GoToTop")
+	ModelAndView goToTop_from_edit(ModelAndView mav) {
 		mav.setViewName("redirect:/");
 		return mav;
 	}
