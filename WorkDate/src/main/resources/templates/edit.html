@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>編集画面</title>
+<link rel="stylesheet" type="text/css" href="../static/style.css"
+	th:href="@{style.css}">
+</head>
+<body>
+
+	<!--　編集フォーム  -->
+	<div class="display">
+		<form th:action="@{/edit}" th:method="post"
+			th:object="${workDateTypeRegistForm}" >
+
+			<p>日付ID</p>
+			<input type="text" name="workDateId" th:field="*{workDateId}">
+			<span th:if="${#fields.hasErrors('workDateId')}"
+				th:errors="*{workDateId}" class="error-input"></span>
+
+			<p>日付名</p>
+			<input type="text" name="workDateName" th:field="*{workDateName}">
+			<span th:if="${#fields.hasErrors('workDateName')}"
+				th:errors="*{workDateName}" class="error-input"></span>
+
+			<p>加減値（年）</p>
+			<input type="text" name="inputAddOrSubYear"
+				th:field="*{inputAddOrSubYear}"> <span
+				th:if="${#fields.hasErrors('inputAddOrSubYear')}"
+				th:errors="*{inputAddOrSubYear}" class="error-input"></span>
+
+			<p>加減値（月）</p>
+			<input type="text" name="inputAddOrSubMonth"
+				th:field="*{inputAddOrSubMonth}"> <span
+				th:if="${#fields.hasErrors('inputAddOrSubMonth')}"
+				th:errors="*{inputAddOrSubMonth}" class="error-input"></span>
+
+			<p>加減値（日）</p>
+			<input type="text" name="inputAddOrSubDay"
+				th:field="*{inputAddOrSubDay}"> <span
+				th:if="${#fields.hasErrors('inputAddOrSubDay')}"
+				th:errors="*{inputAddOrSubDay}" class="error-input"></span> <br>
+			<input type="submit" value="更新"> 
+			<input type="hidden" name="id" th:value="${param.id}"> <input type="submit"
+				name="GoToTop" value="戻る">
+		</form>
+
+	</div>
+</body>
+</html>

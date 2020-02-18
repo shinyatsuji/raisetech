@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>入力画面</title>
+<link rel="stylesheet" type="text/css" href="../static/style.css"
+	th:href="@{style.css}">
+</head>
+<body>
+<div class="display">
+	<div>
+		<p>日付IDを入力して下さい。</p>
+		<form th:action="@{/search}" th:object="${workDateTypeSearchByIdForm}" method="post">
+		 	<input type="text" name="workDateId" th:field="*{workDateId}"> 
+			<input type="submit" name="search" value="検索" class="button-style"> 
+			<span th:if="${#fields.hasErrors('workDateId')}" th:errors="*{workDateId}"
+				class="error-input"></span>  
+			<input type="submit" name="GoToTop" value="戻る" class="button-style">
+		</form>
+	</div>
+<table class="list-table">
+		<tr>
+			<th>id</th>
+			<th>日付ID</th>
+			<th>日付名</th>
+			<th>計算式</th>
+		</tr>
+		<tr th:each="list: ${lists}">
+			<td th:text="${list.id}">NM01</td>
+			<td th:text="${list.workDateId}">NM01</td>
+			<td th:text="${list.workDateName}">20200101</td>
+			<td th:text="${list.inputAddOrSubYear}+'/'+${list.inputAddOrSubMonth}+'/'+${list.inputAddOrSubDay}"></td>
+
+			<td><form th:action="@{/edit}" method="post" class="submit">
+					<input type="submit" name="edit_form" value="更新"> <input
+						type="hidden" name="id" th:value="${param.id}">
+				</form>			
+				<form th:action="@{/delete}" method="post" class="submit">
+					<input type="submit" value="削除" class="red-button"> <input type="hidden"
+						name="id" th:value="${param.id}">
+				</form>
+			</td>
+		</tr>
+	</table> 
+</div>
+</body>
+</html>
